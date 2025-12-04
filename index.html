@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ADMM SHOP - Official</title>
+<style>
+  html,body{
+    height:100%;
+    margin:0;
+  }
+  body{
+    font-family: 'Courier New', monospace;
+    color:#ffccd9;
+    overflow:hidden;
+  }
+  .bg-gif {
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    z-index:0;
+    filter: none;
+    pointer-events:none;
+  }
+  .bg-fallback{
+    position:fixed;
+    inset:0;
+    background: linear-gradient(#ff6f85, #3b2b2b);
+    z-index: -1;
+  }
+  .overlay{
+    position:fixed;
+    inset:0;
+    background: linear-gradient(rgba(200,0,40,0.28), rgba(0,0,0,0.6));
+    z-index:1;
+    pointer-events:none;
+    backdrop-filter: blur(1px);
+  }
+  .container{
+    position:relative;
+    z-index:2;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    text-align:center;
+    padding: 20px;
+  }
+  h1{
+    margin:0 0 8px 0;
+    color:#ff80a0;
+    font-size:48px;
+    text-shadow: 0 0 12px #ff0044, 0 0 32px #ff0077;
+    letter-spacing:4px;
+    transform: translateY(-10px);
+  }
+  .sub{
+    margin:0 0 18px 0;
+    color:#ffdce6;
+    font-size:18px;
+    text-shadow:0 0 6px rgba(255,0,80,0.5);
+  }
+  #join {
+    font-size:22px;
+    padding:14px 34px;
+    background: rgba(255,0,80,0.12);
+    border: 3px solid #ff0055;
+    color: #ffb6d1;
+    border-radius:8px;
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .2s ease, background .18s;
+  }
+  #join:active{ transform: translateY(2px) scale(.99); }
+  #join:hover{
+    box-shadow: 0 0 22px rgba(255,0,80,0.6);
+    background: rgba(255,0,80,0.28);
+  }
+  #access-screen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(0,0,0,0.88);
+    color:#00ffe1;
+    font-size:40px;
+    letter-spacing:6px;
+    text-shadow: 0 0 18px #00ffd6;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .35s ease;
+  }
+  #access-screen.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+  @media (max-width:520px){
+    h1{ font-size:34px; }
+    .sub{ font-size:14px; }
+    #join{ font-size:18px; padding:12px 24px; }
+    #access-screen{ font-size:28px; letter-spacing:3px; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-fallback" aria-hidden="true"></div>
+  <img class="bg-gif" id="bgGif" src="https://media.tenor.com/uQCt8nKwKuEAAAAC/kaworu-nagisa.gif" alt="" />
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="container">
+    <h1>ADMM SHOP</h1>
+    <p class="sub">Enter the system...</p>
+    <button id="join">参加する</button>
+  </div>
+  <div id="access-screen">SYSTEM ACCESS<br/>GRANTED</div>
+<script>
+  (function(){
+    const joinBtn = document.getElementById('join');
+    const access = document.getElementById('access-screen');
+    joinBtn.addEventListener('click', function(){
+      access.classList.add('show');
+      document.body.style.transition = 'filter 0.35s ease';
+      document.body.style.filter = 'brightness(0.6) saturate(1.2)';
+      setTimeout(() => {
+        window.location.href = "https://discord.gg/6JJJ6tqGtA";
+      }, 2000);
+    });
+    const gif = document.getElementById('bgGif');
+    gif.addEventListener('error', () => {
+      console.warn('背景GIFの読み込み失敗');
+    });
+    gif.addEventListener('load', () => {
+      console.log('背景GIF読み込み成功');
+    });
+  })();
+</script>
+</body>
+</html>
